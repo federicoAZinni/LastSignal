@@ -31,6 +31,178 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7277627092367637905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3462571313039065883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9127746780836873794}
+  - component: {fileID: 5448481920526047491}
+  - component: {fileID: 7101514030160654887}
+  m_Layer: 0
+  m_Name: Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9127746780836873794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3462571313039065883}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -3.637979e-12, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5376024532538678034}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!108 &5448481920526047491
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3462571313039065883}
+  m_Enabled: 1
+  serializedVersion: 12
+  m_Type: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 50
+  m_Range: 25
+  m_SpotAngle: 124.607086
+  m_InnerSpotAngle: 44.51103
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 2800000, guid: b66976fe27dd03b49b02412f777eb8b7, type: 3}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!114 &7101514030160654887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3462571313039065883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!1 &5420593021658122424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5376024532538678034}
+  - component: {fileID: 3493000866934886007}
+  m_Layer: 0
+  m_Name: FlashLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5376024532538678034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420593021658122424}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6409998, z: 0.424}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9127746780836873794}
+  m_Father: {fileID: 7277627092367637905}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3493000866934886007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420593021658122424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662e9d8aa78ee9f44ae354afe18eacc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashLightItem
 --- !u!1 &6483328840494116707
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,6 +220,7 @@ GameObject:
   - component: {fileID: 3497636770229362484}
   - component: {fileID: 1590985806031515421}
   - component: {fileID: 5436355996250273686}
+  - component: {fileID: 2444220007666442010}
   - component: {fileID: 5531984947884774485}
   - component: {fileID: 8737114793023005631}
   - component: {fileID: 659324380336924857}
@@ -72,6 +245,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4232990085872478589}
+  - {fileID: 5376024532538678034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2483438432703961154
@@ -89,7 +263,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6483328840494116707}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -173,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd51f95cf1e29042b255b4d762c5fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  stunMovement: 1
+  stunMovement: 0
 --- !u!114 &1163267213732941941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,9 +361,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputPlayerController
   stunMovement: 0
-  playerMove: {x: 0, y: 0}
-  lookMove: {x: 0, y: 0}
-  lightToggle: 0
+  input_playerMove: {x: 0, y: 0}
+  input_lookMove: {x: 0, y: 0}
+  input_lightToggle: 0
+  input_interact: 0
 --- !u!114 &3497636770229362484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d1f09df72bf1249ae25570c3f3ac40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSoundController
-  stunMovement: 1
+  stunMovement: 0
   playeraudioSource: {fileID: 659324380336924857}
   footstepClips:
   - {fileID: 8300000, guid: c18998eee951c9c4abd728f652a1dfbe, type: 3}
@@ -232,7 +407,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e593d83c72cdb674683885c442ba6ba9, type: 3}
   - {fileID: 8300000, guid: 3f4c8244c9ae6194294941c2d0797cc9, type: 3}
   - {fileID: 8300000, guid: 539150ad217bf8c49b14744aea670652, type: 3}
-  stepInterval: 0.5
+  stepInterval: 0.7
 --- !u!114 &5436355996250273686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,8 +420,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3bca260f849aa4ba1addd2bb507b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEquiment
-  stunMovement: 1
-  flashLight: {fileID: 0}
+  stunMovement: 0
+  flashLight: {fileID: 5420593021658122424}
+  cameraFirstPlayer: {fileID: 0}
+--- !u!114 &2444220007666442010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483328840494116707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e303aa89d07454ea9f574754c17408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Playerinteractor
+  stunMovement: 0
+  interactRange: 5
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  currentTarget: {fileID: 0}
 --- !u!143 &5531984947884774485
 CharacterController:
   m_ObjectHideFlags: 0

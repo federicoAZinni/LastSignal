@@ -6,22 +6,27 @@ using UnityEngine.UI;
 public abstract class InteractableObject : MonoBehaviour
 {
     //UI
-    [SerializeField] Canvas canvasUI;
-    [SerializeField] Image radialEImg;
+    Canvas canvasUI;
+    Image radialEImg;
 
     Coroutine animRadialHoldPress;
+
+    private void Awake()
+    {
+        canvasUI = transform.GetChild(0).GetComponent<Canvas>();
+        radialEImg = canvasUI.transform.GetChild(0).GetComponent<Image>();
+    }
 
     public void Interact(bool input)
     {
         if (input && animRadialHoldPress == null)
             animRadialHoldPress = StartCoroutine(AnimRadialHoldPress());
-        else
-        {
-            if(animRadialHoldPress!=null)
-            {
-                StopCoroutine(animRadialHoldPress);
-                radialEImg.fillAmount = 0;
-            }
+        else if (animRadialHoldPress!=null && !input)
+        { 
+             StopCoroutine(animRadialHoldPress);
+             radialEImg.fillAmount = 0;
+           
+           if(!input) animRadialHoldPress = null;
         }
             
     }
@@ -29,17 +34,13 @@ public abstract class InteractableObject : MonoBehaviour
     IEnumerator AnimRadialHoldPress()
     {
         float time = 0;
-
         while(time<1)
         {
             time += Time.deltaTime;
             radialEImg.fillAmount = time;
             yield return null;
         }
-
         OnInteract();
-
-        animRadialHoldPress = null;
     }
 
     protected abstract void OnInteract();
