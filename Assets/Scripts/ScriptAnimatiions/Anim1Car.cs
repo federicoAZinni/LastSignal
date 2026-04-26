@@ -4,6 +4,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Splines;
+using FMOD.Studio;
 
 public class Anim1Car : MonoBehaviour
 {
@@ -14,13 +15,17 @@ public class Anim1Car : MonoBehaviour
     [SerializeField] Animator animatorCinemachine;
     [SerializeField] CinemachineInputAxisController inputAxisController;
     [SerializeField] Image fadeoutImg;
+    [Header("Sound")]
+    EventInstance wheelsSoundInstance;
     bool endAnim = false;
 
     private void Start()
     {
         Player.OnCinematic?.Invoke(true);
         inputAxisController.enabled = false;
-        StartCoroutine(SoundPanMove());
+        // StartCoroutine(SoundPanMove());
+        wheelsSoundInstance = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.carWheels);
+        wheelsSoundInstance.start();
         FadeOut();
     }
 
@@ -70,12 +75,19 @@ public class Anim1Car : MonoBehaviour
 
     IEnumerator EndOfAnim()
     {
+        AudioManager.Instance.SetParameterValue("WheelsIntensity", 0,  wheelsSoundInstance);
+        AudioManager.Instance.PlayOneshot(FmodEvents.Instance.handBreak, carT.position);
         yield return new WaitForSeconds(1);
         animatorCinemachine.Play("PlayerFirstCamera");
+        wheelsSoundInstance.stop(STOP_MODE.ALLOWFADEOUT);
+        AudioManager.Instance.PlayOneshot(FmodEvents.Instance.carDoorOpens, carT.position);
+        AudioManager.Instance.SetParameterValue("Intensity", 1,  AudioManager.Instance.ambientSoundInstance);
         yield return new WaitForSeconds(1);
+        AudioManager.Instance.PlayOneshot(FmodEvents.Instance.carDoorCloses, carT.position);
         Player.OnCinematic?.Invoke(false);
         yield return new WaitForSeconds(0.1f);
         inputAxisController.enabled = true;
+        
     }
 
     void FadeOut()

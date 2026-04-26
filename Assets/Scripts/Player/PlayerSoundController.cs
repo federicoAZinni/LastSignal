@@ -1,46 +1,49 @@
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 
 public class PlayerSoundController : Player, IPlayerModule
 {
-    [SerializeField] AudioSource playeraudioSource;
-    [SerializeField] AudioClip[] footstepClips;
+    
     private bool isMoving;
 
-    private float stepTimer;
-    [SerializeField] private float stepInterval = 0.5f;
+    private EventInstance playerFootSteps;
+
     public void Init()
     {
-        playeraudioSource = GetComponent<AudioSource>();
+       
+    }
+
+    public void Start()
+    {
+         playerFootSteps = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.steps);
     }
 
     public void PlayFootstep()
     {
-        if (footstepClips.Length == 0) return;
-
-        AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
-        playeraudioSource.pitch = Random.Range(0.9f, 1.1f); // Variación sutil
-        playeraudioSource.PlayOneShot(clip);
+        
     }
 
 
     private void Update()
     {
-
-        if (stunMovement) return;
         isMoving = inputPlayerController.input_playerMove.magnitude > 0;
+
         if (isMoving)
         {
-            stepTimer += Time.deltaTime;
-            if (stepTimer >= stepInterval)
+            PLAYBACK_STATE playback_state;
+            playerFootSteps.getPlaybackState(out playback_state);
+            if (playback_state.Equals(PLAYBACK_STATE.STOPPED))
             {
-                PlayFootstep();
-                stepTimer = 0f;
+                playerFootSteps.start();
             }
         }
         else
-            stepTimer = 0f;
+        {
+            playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+           
     }
 
 
