@@ -391,13 +391,15 @@ GameObject:
   - component: {fileID: 1163267213732941941}
   - component: {fileID: 3497636770229362484}
   - component: {fileID: 1590985806031515421}
+  - component: {fileID: 4350935282942472115}
   - component: {fileID: 5436355996250273686}
   - component: {fileID: 2444220007666442010}
   - component: {fileID: 5531984947884774485}
   - component: {fileID: 8737114793023005631}
+  - component: {fileID: 2608989138444485974}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -520,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   stunMovement: 0
+  ladderMovement: 0
 --- !u!114 &1163267213732941941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,10 +536,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputPlayerController
   stunMovement: 0
+  ladderMovement: 0
   input_playerMove: {x: 0, y: 0}
   input_lookMove: {x: 0, y: 0}
   input_lightToggle: 0
   input_interact: 0
+  input_esc: 0
 --- !u!114 &3497636770229362484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
   stunMovement: 0
+  ladderMovement: 0
   cc: {fileID: 5531984947884774485}
   speedWalk: 5
   speedRot: 0
@@ -567,19 +573,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSoundController
   stunMovement: 0
-  playeraudioSource: {fileID: 0}
-  footstepClips:
-  - {fileID: 8300000, guid: c18998eee951c9c4abd728f652a1dfbe, type: 3}
-  - {fileID: 8300000, guid: bdeb2941831d0a149b0ffca5863d70ff, type: 3}
-  - {fileID: 8300000, guid: 5a0b6baeea4e6ac408d59ac116e166a2, type: 3}
-  - {fileID: 8300000, guid: 5f7461741fc71a84b828449985f3ca17, type: 3}
-  - {fileID: 8300000, guid: 31a824e64f6ae3244965d218529ed43f, type: 3}
-  - {fileID: 8300000, guid: 78aee4e5758a0524ead2bd236f732417, type: 3}
-  - {fileID: 8300000, guid: a997eec623cfc7841a08868fa20522fb, type: 3}
-  - {fileID: 8300000, guid: e593d83c72cdb674683885c442ba6ba9, type: 3}
-  - {fileID: 8300000, guid: 3f4c8244c9ae6194294941c2d0797cc9, type: 3}
-  - {fileID: 8300000, guid: 539150ad217bf8c49b14744aea670652, type: 3}
-  stepInterval: 0.7
+  ladderMovement: 0
+--- !u!114 &4350935282942472115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483328840494116707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f83a33a50371d4b939940bc721d55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraController
+  stunMovement: 1
+  ladderMovement: 0
+  cinemachineInputAxisController: {fileID: 0}
 --- !u!114 &5436355996250273686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEquiment
   stunMovement: 0
+  ladderMovement: 0
   flashLight: {fileID: 6320199045665484301}
   cameraFirstPlayer: {fileID: 0}
 --- !u!114 &2444220007666442010
@@ -608,6 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Playerinteractor
   stunMovement: 0
+  ladderMovement: 0
   interactRange: 5
   interactableLayer:
     serializedVersion: 2
@@ -661,3 +672,30 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2608989138444485974
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483328840494116707}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerEquiment : Player, IPlayerModule
 {
-
     [SerializeField] GameObject flashLight;
     [SerializeField] Transform cameraFirstPlayer;
+
     public void Init()
     {
         cameraFirstPlayer = GameObject.FindGameObjectWithTag("FirstCameraPlayer").transform;
@@ -12,6 +12,8 @@ public class PlayerEquiment : Player, IPlayerModule
 
     private void Update()
     {
+        if (stunMovement) return;
+
         flashLight.SetActive(inputPlayerController.input_lightToggle);
         Rotation();
     }
@@ -20,5 +22,4 @@ public class PlayerEquiment : Player, IPlayerModule
     {
         flashLight.transform.rotation = cameraFirstPlayer.rotation;
     }
-
 }

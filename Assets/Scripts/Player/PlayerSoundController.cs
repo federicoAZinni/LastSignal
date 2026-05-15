@@ -5,29 +5,29 @@ using UnityEngine.Rendering;
 
 public class PlayerSoundController : Player, IPlayerModule
 {
-    
     private bool isMoving;
-
     private EventInstance playerFootSteps;
 
     public void Init()
     {
-       
+
     }
 
     public void Start()
     {
-         playerFootSteps = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.steps);
-    }
-
-    public void PlayFootstep()
-    {
-        
+        playerFootSteps = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.steps);
     }
 
 
     private void Update()
     {
+        if (stunMovement)
+        {
+            // Asegurarse de frenar los pasos si estaban sonando
+            playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
+            return;
+        }
+
         isMoving = inputPlayerController.input_playerMove.magnitude > 0;
 
         if (isMoving)
@@ -43,8 +43,5 @@ public class PlayerSoundController : Player, IPlayerModule
         {
             playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
-           
     }
-
-
 }

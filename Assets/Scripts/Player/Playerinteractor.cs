@@ -12,9 +12,19 @@ public class PlayerInteractor : Player, IPlayerModule
 
     }
 
-
     private void Update()
     {
+        if (stunMovement)
+        {
+            // Limpiar target actual al entrar en cinemática/minijuego
+            if (currentTarget != null)
+            {
+                currentTarget.HideUI();
+                currentTarget = null;
+            }
+            return;
+        }
+
         FindClosestInteractable();
 
         if (currentTarget != null)
@@ -52,6 +62,4 @@ public class PlayerInteractor : Player, IPlayerModule
             currentTarget?.ShowUI();
         }
     }
-
- 
 }

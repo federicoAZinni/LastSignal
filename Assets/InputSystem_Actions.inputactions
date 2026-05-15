@@ -34,6 +34,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Esc",
+                    "type": "Button",
+                    "id": "f228041d-f25d-4a18-a0c6-4820d90680e5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "InteractLight",
                     "type": "Button",
                     "id": "7e8cd115-533a-416f-915b-441546dd5b2a",
@@ -310,6 +319,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e817edb-a6c4-413b-a1f7-7e7e8e6d3443",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5a66bfa-d7b3-41d8-a058-8df9c7784687",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Esc",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

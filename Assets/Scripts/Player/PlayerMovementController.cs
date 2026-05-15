@@ -11,24 +11,26 @@ public class PlayerMovementController : Player, IPlayerModule
     [SerializeField] float speedWalk;
     [SerializeField] float speedRot;
     bool groundedPlayer;
-    //float jumpHeight = 1.5f;
     float gravityValue = -9.81f;
     Vector3 directionMove;
     public Vector3 directionRot;
 
     public void Init()
     {
-       
+
     }
 
     private void Update()
     {
-        if (stunMovement) return;
+        if (base.stunMovement) return;
 
-        MovePlayer();
+        if (!base.ladderMovement) MovePlayer();
+        else MoveLadder();
+
         LookRotate();
     }
-    public void MovePlayer()
+
+     void MovePlayer()
     {
         groundedPlayer = cc.isGrounded;
         if (groundedPlayer)
@@ -37,27 +39,26 @@ public class PlayerMovementController : Player, IPlayerModule
                 directionMove.y = -2f;
         }
 
-
-        // Jump 
-        //if (groundedPlayer && jumpAction.action.WasPressedThisFrame())
-        //{
-        //    playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
-        //}
-
-
-        directionMove = new Vector3(inputPlayerController.input_playerMove.x, directionMove.y, inputPlayerController.input_playerMove.y) * Time.deltaTime *speedWalk;
-
+        directionMove = new Vector3(inputPlayerController.input_playerMove.x, directionMove.y, inputPlayerController.input_playerMove.y) * Time.deltaTime * speedWalk;
         directionMove.y += gravityValue * Time.deltaTime;
 
         cc.Move(directionMove.x * transform.right + directionMove.z * transform.forward + Vector3.up * directionMove.y);
     }
 
-    public void LookRotate()
+    void MoveLadder()
     {
-       directionRot.y += inputPlayerController.input_lookMove.x * Time.deltaTime;
+        float vertical = inputPlayerController.input_playerMove.y;
 
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, directionRot.y, transform.eulerAngles.z); 
+        directionMove = Vector3.zero;
+        directionMove.y = vertical * speedWalk * Time.deltaTime;
+
+        cc.Move(Vector3.up * directionMove.y);
 
     }
 
+     void LookRotate()
+    {
+        directionRot.y += inputPlayerController.input_lookMove.x * Time.deltaTime;
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, directionRot.y, transform.eulerAngles.z);
+    }
 }
