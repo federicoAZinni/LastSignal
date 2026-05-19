@@ -7,12 +7,12 @@ public class PlayerCameraController : Player, IPlayerModule
 
     private void OnEnable()
     {
-        OnCinematic += ToggleStopMovCamera;
+        OnMiniGame += ToggleStopMovCamera;
     }
 
     private void OnDisable()
     {
-        OnCinematic -= ToggleStopMovCamera;
+        OnMiniGame -= ToggleStopMovCamera;
     }
 
     public void Init()

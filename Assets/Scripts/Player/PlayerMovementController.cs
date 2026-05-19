@@ -23,6 +23,7 @@ public class PlayerMovementController : Player, IPlayerModule
     private void Update()
     {
         if (base.stunMovement) return;
+        if (base.minigameStunMovement) return;
 
         if (!base.ladderMovement) MovePlayer();
         else MoveLadder();

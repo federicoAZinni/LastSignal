@@ -13,7 +13,7 @@ public abstract class MiniGame : InteractableObject
         isActive = true;
         gameObject.SetActive(true);
 
-        Player.OnCinematic?.Invoke(true);
+        Player.OnMiniGame?.Invoke(true);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -29,7 +29,7 @@ public abstract class MiniGame : InteractableObject
 
         OnClose();
 
-        Player.OnCinematic?.Invoke(false);
+        Player.OnMiniGame?.Invoke(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

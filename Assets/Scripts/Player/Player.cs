@@ -14,12 +14,13 @@ public class Player : MonoBehaviour
 
     public bool stunMovement = true;
     public bool ladderMovement = false;
+    public bool minigameStunMovement = false;
 
     // Evento estático: cualquier sistema puede invocar Player.OnCinematic(true/false)
     // para bloquear/desbloquear el movimiento del player.
     public static Action<bool> OnCinematic;
     public static Action<bool> OnLadder;
-
+    public static Action<bool> OnMiniGame;
     void Awake()
     {
         playerModules = transform.GetComponentsInChildren<IPlayerModule>();
@@ -54,16 +55,20 @@ public class Player : MonoBehaviour
     {
         OnCinematic += OnCinematicPlayer;
         OnLadder += OnStairPlayer;
+        OnMiniGame += OnMinigamePlayer;
     }
 
     private void OnDisable()
     {
         OnCinematic -= OnCinematicPlayer;
         OnLadder -= OnStairPlayer;
+        OnMiniGame -= OnMinigamePlayer;
     }
 
     void OnCinematicPlayer(bool n) => stunMovement = n;
     void OnStairPlayer(bool n) => ladderMovement = n;
+    void OnMinigamePlayer(bool n) => minigameStunMovement = n;
+
 
 
 }
