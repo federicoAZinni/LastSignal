@@ -491,6 +491,7 @@ MonoBehaviour:
   Banks:
   - DigeticMusic
   - SFX
+  - Voices
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

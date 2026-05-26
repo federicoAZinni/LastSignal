@@ -13,6 +13,10 @@ public class FmodEvents : MonoBehaviour
     public EventReference handBreak;
     public EventReference carDoorOpens;
     public EventReference carDoorCloses;
+
+    [Header ("Voices")]
+    public EventReference introPlayerVoice;
+
     public static FmodEvents Instance { private set; get;}
 
     void Awake()

@@ -887,6 +887,13 @@ MonoBehaviour:
       Data3: 1422512569
       Data4: -1313934212
     Path: event:/Car/DoorCloses
+  introPlayerVoice:
+    Guid:
+      Data1: -1444106858
+      Data2: 1232788568
+      Data3: 1954867372
+      Data4: -170782799
+    Path: event:/Voice/Intro Voice
 --- !u!1 &283232887
 GameObject:
   m_ObjectHideFlags: 0

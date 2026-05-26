@@ -25,6 +25,7 @@ public class Anim1Car : MonoBehaviour
         inputAxisController.enabled = false;
         // StartCoroutine(SoundPanMove());
         wheelsSoundInstance = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.carWheels);
+        wheelsSoundInstance = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.introPlayerVoice);
         wheelsSoundInstance.start();
         FadeOut();
     }
