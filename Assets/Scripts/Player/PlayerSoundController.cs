@@ -8,6 +8,7 @@ public class PlayerSoundController : Player, IPlayerModule
     private bool isMoving;
     private EventInstance playerFootSteps;
 
+
     public void Init()
     {
 
@@ -16,11 +17,14 @@ public class PlayerSoundController : Player, IPlayerModule
     public void Start()
     {
         playerFootSteps = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.steps);
+
+        // AudioManager.Instance.SetStepsSound(AudioManager.FloorTypeParamenterName.Metal, playerFootSteps);
     }
 
 
     private void Update()
     {
+
         if (stunMovement)
         {
             // Asegurarse de frenar los pasos si estaban sonando
@@ -43,5 +47,7 @@ public class PlayerSoundController : Player, IPlayerModule
         {
             playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
+
+    
     }
 }
