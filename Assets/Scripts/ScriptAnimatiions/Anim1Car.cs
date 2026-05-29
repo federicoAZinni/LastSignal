@@ -19,15 +19,19 @@ public class Anim1Car : MonoBehaviour
     EventInstance wheelsSoundInstance;
     bool endAnim = false;
 
-    private void Start()
+    private IEnumerator Start()
     {
         Player.OnCinematic?.Invoke(true);
         inputAxisController.enabled = false;
+        Cursor.visible = false;
         // StartCoroutine(SoundPanMove());
         wheelsSoundInstance = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.carWheels);
-        wheelsSoundInstance = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.introPlayerVoice);
         wheelsSoundInstance.start();
         FadeOut();
+
+        yield return new WaitForSeconds(2);
+        wheelsSoundInstance = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.introPlayerVoice);
+        wheelsSoundInstance.start();
     }
 
     private void Update()

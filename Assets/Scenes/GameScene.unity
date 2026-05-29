@@ -7892,7 +7892,6 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652896731148}
   - component: {fileID: 919132148893317817}
-  - component: {fileID: 919132148893317815}
   - component: {fileID: 919132148893317818}
   - component: {fileID: 919132148893317819}
   - component: {fileID: 919132148893317820}
@@ -7903,25 +7902,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &919132148893317815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148893317814}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e894fa6212937864bbfb38541223dfb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Anim1Car
-  carT: {fileID: 0}
-  refPosition: {fileID: 1077259682}
-  audioSourceAmbiental: {fileID: 0}
-  splineAnimate: {fileID: 1077259678}
-  animatorCinemachine: {fileID: 809847575}
-  inputAxisController: {fileID: 381436163}
-  fadeoutImg: {fileID: 0}
 --- !u!54 &919132148893317817
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8566,8 +8546,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1590985806031515421, guid: d801f03f6b81b85408508d3f1fddc39d, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4350935282942472115, guid: d801f03f6b81b85408508d3f1fddc39d, type: 3}
+      propertyPath: cinemachineInputAxisController
+      value: 
+      objectReference: {fileID: 381436163}
     - target: {fileID: 6483328840494116707, guid: d801f03f6b81b85408508d3f1fddc39d, type: 3}
       propertyPath: m_Name
       value: Player

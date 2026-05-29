@@ -22,6 +22,7 @@ public class PlayerCameraController : Player, IPlayerModule
 
     void ToggleStopMovCamera(bool n)
     {
+        Debug.Log(n);
         cinemachineInputAxisController.enabled = !n;
     }
 
