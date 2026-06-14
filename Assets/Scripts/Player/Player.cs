@@ -16,8 +16,7 @@ public class Player : MonoBehaviour
     public bool ladderMovement = false;
     public bool minigameStunMovement = false;
 
-    // Evento estático: cualquier sistema puede invocar Player.OnCinematic(true/false)
-    // para bloquear/desbloquear el movimiento del player.
+    // Eventos
     public static Action<bool> OnCinematic;
     public static Action<bool> OnLadder;
     public static Action<bool> OnMiniGame;

@@ -16,7 +16,7 @@ public class PlayerInteractor : Player, IPlayerModule
     {
         if (stunMovement)
         {
-            // Limpiar target actual al entrar en cinemática/minijuego
+            // Limpiar target actual al entrar en minijuego
             if (currentTarget != null)
             {
                 currentTarget.HideUI();

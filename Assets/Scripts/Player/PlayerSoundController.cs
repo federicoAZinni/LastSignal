@@ -11,20 +11,17 @@ public class PlayerSoundController : Player, IPlayerModule
 
     public void Init()
     {
-
+        //AudioManager.Instance.SetStepsSound() asi se cambia el sonido de metal o nieve de los passo
     }
 
     public void Start()
     {
         playerFootSteps = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.steps);
-
-        // AudioManager.Instance.SetStepsSound(AudioManager.FloorTypeParamenterName.Metal, playerFootSteps);
     }
 
 
     private void Update()
     {
-
         if (stunMovement)
         {
             // Asegurarse de frenar los pasos si estaban sonando

@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCameraController : Player, IPlayerModule
@@ -17,7 +18,7 @@ public class PlayerCameraController : Player, IPlayerModule
 
     public void Init()
     {
-        cinemachineInputAxisController = FindFirstObjectByType<CinemachineInputAxisController>();
+        cinemachineInputAxisController = GameObject.FindGameObjectWithTag("FirstCameraPlayer").GetComponent<CinemachineInputAxisController>();
     }
 
     void ToggleStopMovCamera(bool n)

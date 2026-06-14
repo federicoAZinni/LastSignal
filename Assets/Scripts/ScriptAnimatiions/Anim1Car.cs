@@ -15,6 +15,7 @@ public class Anim1Car : MonoBehaviour
     [SerializeField] Animator animatorCinemachine;
     [SerializeField] CinemachineInputAxisController inputAxisController;
     [SerializeField] Image fadeoutImg;
+    [SerializeField] DialogueSistem dialogueSistem;
     [Header("Sound")]
     EventInstance wheelsSoundInstance;
     bool endAnim = false;
@@ -31,6 +32,7 @@ public class Anim1Car : MonoBehaviour
 
         yield return new WaitForSeconds(2);
         wheelsSoundInstance = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.introPlayerVoice);
+        dialogueSistem.StartDialogue();
         wheelsSoundInstance.start();
     }
 
