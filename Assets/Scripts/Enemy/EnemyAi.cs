@@ -20,10 +20,8 @@ public class EnemyAi : MonoBehaviour
         ChangeState(GetState<Patrullar>());
     }
 
-    void InitInstanceOfStates()
-    {
-        states = gameObject.GetComponents<IStateEnemy>();
-    }
+    void InitInstanceOfStates() => states = gameObject.GetComponents<IStateEnemy>();
+    
 
     T GetState<T>() where T : class, IStateEnemy
     {

@@ -1,37 +1,43 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerMovementController : Player, IPlayerModule
+public class PlayerMovementController : MonoBehaviour, IPlayerModule
 {
     [Header("Dependencies")]
-    [SerializeField] CharacterController cc;
+    [SerializeField] private CharacterController cc;
 
     [Space(5)]
     [Header("Variables")]
-    [SerializeField] float speedWalk;
-    [SerializeField] float speedRot;
-    bool groundedPlayer;
-    float gravityValue = -9.81f;
-    Vector3 directionMove;
-    public Vector3 directionRot;
+    [SerializeField] private float speedWalk;
+    [SerializeField] private float speedRot;
 
-    public void Init()
+    private Player player;
+    private InputPlayerController input;
+
+    private bool groundedPlayer;
+    private float gravityValue = -9.81f;
+    private Vector3 directionMove;
+    private Vector3 directionRot;
+
+    public Vector3 DirectionRot => directionRot;
+
+    public void Init(Player player)
     {
-
+        this.player = player;
+        input = player.Input;
     }
 
     private void Update()
     {
-        if (base.stunMovement) return;
-        if (base.minigameStunMovement) return;
+        if (player.StunMovement) return;
+        if (player.MinigameStunMovement) return;
 
-        if (!base.ladderMovement) MovePlayer();
+        if (!player.LadderMovement) MovePlayer();
         else MoveLadder();
 
         LookRotate();
     }
 
-     void MovePlayer()
+    private void MovePlayer()
     {
         groundedPlayer = cc.isGrounded;
         if (groundedPlayer)
@@ -40,26 +46,28 @@ public class PlayerMovementController : Player, IPlayerModule
                 directionMove.y = -2f;
         }
 
-        directionMove = new Vector3(inputPlayerController.input_playerMove.x, directionMove.y, inputPlayerController.input_playerMove.y) * Time.deltaTime * speedWalk;
+        directionMove = new Vector3(input.MovementInput.x, directionMove.y, input.MovementInput.y)
+                        * Time.deltaTime * speedWalk;
         directionMove.y += gravityValue * Time.deltaTime;
 
-        cc.Move(directionMove.x * transform.right + directionMove.z * transform.forward + Vector3.up * directionMove.y);
+        cc.Move(directionMove.x * transform.right
+              + directionMove.z * transform.forward
+              + Vector3.up * directionMove.y);
     }
 
-    void MoveLadder()
+    private void MoveLadder()
     {
-        float vertical = inputPlayerController.input_playerMove.y;
+        float vertical = input.MovementInput.y;
 
         directionMove = Vector3.zero;
         directionMove.y = vertical * speedWalk * Time.deltaTime;
 
         cc.Move(Vector3.up * directionMove.y);
-
     }
 
-     void LookRotate()
+    private void LookRotate()
     {
-        directionRot.y += inputPlayerController.input_lookMove.x * Time.deltaTime;
+        directionRot.y += input.LookInput.x * Time.deltaTime;
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, directionRot.y, transform.eulerAngles.z);
     }
 }

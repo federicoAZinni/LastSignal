@@ -1,44 +1,30 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputPlayerController : Player, IPlayerModule
+public class InputPlayerController : MonoBehaviour, IPlayerModule
 {
-    public Vector2 input_playerMove;
-    public Vector2 input_lookMove;
-    public bool input_lightToggle;
-    public bool input_interact;
-    public bool input_esc;
+    // Inputs expuestos como propiedades de solo lectura hacia afuera
+    public Vector2 MovementInput { get; private set; }
+    public Vector2 LookInput { get; private set; }
+    public bool LightToggle { get; private set; }
+    public bool Interact { get; private set; }
+    public bool Esc { get; private set; }
 
-    public void Init()
-    {
-
-    }
+    public void Init(Player player) { }
 
     public void OnEsc(InputValue value)
     {
-        input_esc = !input_esc;
+        Esc = !Esc;
 
-        // Notificar a los minijuegos activos que se presionó ESC
+        // Notificar a los minijuegos activos que se presiono ESC
         MiniGame.OnEscPressed?.Invoke();
     }
 
-    public void OnInteract(InputValue value)
-    {
-        input_interact = !input_interact;
-    }
+    public void OnInteract(InputValue value) => Interact = !Interact;
 
-    public void OnInteractLight(InputValue value)
-    {
-        input_lightToggle = !input_lightToggle;
-    }
+    public void OnInteractLight(InputValue value) => LightToggle = !LightToggle;
 
-    public void OnMove(InputValue value)
-    {
-        input_playerMove = value.Get<Vector2>();
-    }
+    public void OnMove(InputValue value) => MovementInput = value.Get<Vector2>();
 
-    public void OnLook(InputValue value)
-    {
-        input_lookMove = value.Get<Vector2>();
-    }
+    public void OnLook(InputValue value) => LookInput = value.Get<Vector2>();
 }

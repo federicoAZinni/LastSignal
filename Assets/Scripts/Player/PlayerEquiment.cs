@@ -1,24 +1,29 @@
 using UnityEngine;
 
-public class PlayerEquiment : Player, IPlayerModule
+public class PlayerEquiment : MonoBehaviour, IPlayerModule
 {
-    [SerializeField] GameObject flashLight;
-    [SerializeField] Transform cameraFirstPlayer;
+    [SerializeField] private GameObject flashLight;
+    [SerializeField] private Transform cameraFirstPlayer;
 
-    public void Init()
+    private Player player;
+    private InputPlayerController input;
+
+    public void Init(Player player)
     {
+        this.player = player;
+        input = player.Input;
         cameraFirstPlayer = GameObject.FindGameObjectWithTag("FirstCameraPlayer").transform;
     }
 
     private void Update()
     {
-        if (stunMovement) return;
+        if (player.StunMovement) return;
 
-        flashLight.SetActive(inputPlayerController.input_lightToggle);
+        flashLight.SetActive(input.LightToggle);
         Rotation();
     }
 
-    void Rotation()
+    private void Rotation()
     {
         flashLight.transform.rotation = cameraFirstPlayer.rotation;
     }

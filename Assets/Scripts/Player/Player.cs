@@ -3,76 +3,73 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Referencias dependencias")]
-    protected InputPlayerController inputPlayerController;
-    protected PlayerMovementController playerMovementController;
-    protected PlayerSoundController soundController;
-    protected PlayerInteractor playerInteractor;
-    protected PlayerCameraController cameraController;
+    public bool StunMovement { get; private set; } = false;   
+    public bool LadderMovement { get; private set; } = false; 
+    public bool MinigameStunMovement { get; private set; } = false; 
 
-    IPlayerModule[] playerModules;
+  
+    public InputPlayerController Input { get; private set; }
 
-    public bool stunMovement = true;
-    public bool ladderMovement = false;
-    public bool minigameStunMovement = false;
+    private IPlayerModule[] playerModules;
 
-    // Eventos
+    // --- Eventos ---
     public static Action<bool> OnCinematic;
     public static Action<bool> OnLadder;
     public static Action<bool> OnMiniGame;
-    void Awake()
+
+    private void Awake()
     {
-        playerModules = transform.GetComponentsInChildren<IPlayerModule>();
-        SetReferencies();
+        playerModules = GetComponentsInChildren<IPlayerModule>();
+        ResolveReferences();
         InitModules();
     }
 
-    void SetReferencies()
+    private void ResolveReferences()
     {
-        foreach (IPlayerModule playerModule in playerModules)
+        foreach (IPlayerModule module in playerModules)
         {
-            if (playerModule is InputPlayerController ipc)
-                inputPlayerController = ipc;
-            else if (playerModule is PlayerMovementController pmc)
-                playerMovementController = pmc;
-            else if (playerModule is PlayerSoundController psc)
-                soundController = psc;
-            else if (playerModule is PlayerInteractor pi)
-                playerInteractor = pi;
-            else if (playerModule is PlayerCameraController pcc)
-                cameraController = pcc;
+            if (module is InputPlayerController input)
+                Input = input;
         }
     }
 
-    void InitModules()
+    private void InitModules()
     {
-        foreach (IPlayerModule playerModule in playerModules)
-            playerModule.Init();
+        foreach (IPlayerModule module in playerModules)
+            module.Init(this);
+    }
+
+
+    public T GetModule<T>() where T : class, IPlayerModule
+    {
+        foreach (IPlayerModule module in playerModules)
+        {
+            if (module is T match)
+                return match;
+        }
+        return null;
     }
 
     private void OnEnable()
     {
-        OnCinematic += OnCinematicPlayer;
-        OnLadder += OnStairPlayer;
-        OnMiniGame += OnMinigamePlayer;
+        OnCinematic += HandleCinematic;
+        OnLadder += HandleLadder;
+        OnMiniGame += HandleMiniGame;
     }
 
     private void OnDisable()
     {
-        OnCinematic -= OnCinematicPlayer;
-        OnLadder -= OnStairPlayer;
-        OnMiniGame -= OnMinigamePlayer;
+        OnCinematic -= HandleCinematic;
+        OnLadder -= HandleLadder;
+        OnMiniGame -= HandleMiniGame;
     }
 
-    void OnCinematicPlayer(bool n) => stunMovement = n;
-    void OnStairPlayer(bool n) => ladderMovement = n;
-    void OnMinigamePlayer(bool n) => minigameStunMovement = n;
-
-
-
+    private void HandleCinematic(bool value) => StunMovement = value;
+    private void HandleLadder(bool value) => LadderMovement = value;
+    private void HandleMiniGame(bool value) => MinigameStunMovement = value;
 }
 
 public interface IPlayerModule
 {
-    public void Init();
+    void Init(Player player);
 }

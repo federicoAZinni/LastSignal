@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class PlayerInteractor : Player, IPlayerModule
+public class PlayerInteractor : MonoBehaviour, IPlayerModule
 {
     [SerializeField] private float interactRange = 3f;
     [SerializeField] private LayerMask interactableLayer;
+    [SerializeField] private InteractableObject currentTarget;
 
-    [SerializeField] InteractableObject currentTarget;
+    private Player player;
+    private InputPlayerController input;
 
-    public void Init()
+    public void Init(Player player)
     {
-
+        this.player = player;
+        input = player.Input;
     }
 
     private void Update()
     {
-        if (stunMovement)
+        // Bloqueado durante cinematica o minijuego
+        if (player.StunMovement || player.MinigameStunMovement)
         {
-            // Limpiar target actual al entrar en minijuego
             if (currentTarget != null)
             {
                 currentTarget.HideUI();
@@ -28,16 +31,12 @@ public class PlayerInteractor : Player, IPlayerModule
         FindClosestInteractable();
 
         if (currentTarget != null)
-        {
-            currentTarget.Interact(inputPlayerController.input_interact);
-        }
+            currentTarget.Interact(input.Interact);
     }
 
     private void FindClosestInteractable()
     {
-        Collider[] hits = Physics.OverlapSphere(
-            transform.position, interactRange, interactableLayer
-        );
+        Collider[] hits = Physics.OverlapSphere(transform.position, interactRange, interactableLayer);
 
         InteractableObject closest = null;
         float closestDist = Mathf.Infinity;

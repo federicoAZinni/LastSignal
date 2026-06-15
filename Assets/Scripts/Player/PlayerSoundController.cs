@@ -1,50 +1,46 @@
 using FMOD.Studio;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Rendering;
 
-public class PlayerSoundController : Player, IPlayerModule
+public class PlayerSoundController : MonoBehaviour, IPlayerModule
 {
+    private Player player;
+    private InputPlayerController input;
+
     private bool isMoving;
     private EventInstance playerFootSteps;
 
-
-    public void Init()
+    public void Init(Player player)
     {
-        //AudioManager.Instance.SetStepsSound() asi se cambia el sonido de metal o nieve de los passo
+        this.player = player;
+        input = player.Input;
+        // AudioManager.Instance.SetStepsSound() para cambiar el material de los pasos
     }
 
-    public void Start()
+    private void Start()
     {
         playerFootSteps = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.steps);
     }
 
-
     private void Update()
     {
-        if (stunMovement)
+        if (player.StunMovement)
         {
-            // Asegurarse de frenar los pasos si estaban sonando
+            // Frenar los pasos si estaban sonando
             playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
             return;
         }
 
-        isMoving = inputPlayerController.input_playerMove.magnitude > 0;
+        isMoving = input.MovementInput.magnitude > 0;
 
         if (isMoving)
         {
-            PLAYBACK_STATE playback_state;
-            playerFootSteps.getPlaybackState(out playback_state);
-            if (playback_state.Equals(PLAYBACK_STATE.STOPPED))
-            {
+            playerFootSteps.getPlaybackState(out PLAYBACK_STATE playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
                 playerFootSteps.start();
-            }
         }
         else
         {
             playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
-
-    
     }
 }

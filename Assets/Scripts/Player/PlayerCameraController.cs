@@ -1,30 +1,24 @@
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerCameraController : Player, IPlayerModule
+public class PlayerCameraController : MonoBehaviour, IPlayerModule
 {
-    [SerializeField] CinemachineInputAxisController cinemachineInputAxisController;
+    [SerializeField] private CinemachineInputAxisController cinemachineInputAxisController;
 
-    private void OnEnable()
+    public void Init(Player player)
     {
-        OnMiniGame += ToggleStopMovCamera;
+        cinemachineInputAxisController = GameObject
+            .FindGameObjectWithTag("FirstCameraPlayer")
+            .GetComponent<CinemachineInputAxisController>();
     }
 
-    private void OnDisable()
-    {
-        OnMiniGame -= ToggleStopMovCamera;
-    }
+    private void OnEnable() => Player.OnMiniGame += ToggleStopMovCamera;
 
-    public void Init()
-    {
-        cinemachineInputAxisController = GameObject.FindGameObjectWithTag("FirstCameraPlayer").GetComponent<CinemachineInputAxisController>();
-    }
+    private void OnDisable() => Player.OnMiniGame -= ToggleStopMovCamera;
 
-    void ToggleStopMovCamera(bool n)
+    private void ToggleStopMovCamera(bool stopped)
     {
-        Debug.Log(n);
-        cinemachineInputAxisController.enabled = !n;
+        if (cinemachineInputAxisController != null)
+            cinemachineInputAxisController.enabled = !stopped;
     }
-
 }
