@@ -8,6 +8,7 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] float amplitudVision;
     [SerializeField] float distanciaVisionPerseguir;
     [SerializeField] float distanciaAlert;
+    [SerializeField] float distanciaAttack;
 
     IStateEnemy currentState;
 
@@ -53,7 +54,9 @@ public class EnemyAi : MonoBehaviour
     {
         if (!CanSeePlayer(out float distance)) return GetState<Patrullar>();
 
-        return distance <= distanciaVisionPerseguir ? GetState<Perseguir>() : GetState<Alert>();
+        if(distance <= distanciaAttack) return GetState<Attack>();
+        if(distance <= distanciaVisionPerseguir) return GetState<Perseguir>();
+        else return GetState<Alert>();
         
     }
 

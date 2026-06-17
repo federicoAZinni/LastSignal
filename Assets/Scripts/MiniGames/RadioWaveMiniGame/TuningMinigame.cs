@@ -129,6 +129,8 @@ public class TuningMinigame : MiniGame
 
             OnTuned?.Invoke();
 
+            GameManager.instance.MiniGameCompleted();
+
             Close();
         }
         else if (feedbackText != null && timeLimit > 0f)

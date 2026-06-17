@@ -19,8 +19,21 @@ public class Perseguir : MonoBehaviour, IStateEnemy
     public void OnStart()
     {
         animController.PlayAnimation(AnimationsTransition.Perseguir);
+
+
+        Vector3 direction = target.position - transform.position;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        LeanTween.value(gameObject, 0, 1, 1).setOnUpdate((float value) => {
+            transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRotation,
+            value);
+        });
         StartCoroutine(WaitAnimRoar());
     }
+
+    
     IEnumerator WaitAnimRoar()
     {
         yield return new WaitForSeconds(4.5f);
